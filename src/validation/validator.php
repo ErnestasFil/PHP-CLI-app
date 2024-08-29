@@ -12,6 +12,12 @@ class Validator
         $this->stopOnFirstFailure = $stopOnFirstFailure;
     }
 
+    public function validateInput($data): array
+    {
+        return self::validate($data) ? ["data" => $data] : ["error" => self::getErrors()];
+
+    }
+
     public function validate($data)
     {
         $this->errors = [];
@@ -28,7 +34,6 @@ class Validator
                 }
             }
         }
-
         return empty($this->errors);
     }
 

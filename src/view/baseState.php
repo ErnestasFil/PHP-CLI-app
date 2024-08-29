@@ -7,32 +7,35 @@ abstract class BaseState implements State
 
     public function handleInput()
     {
-        $input = CLI::getInput();
-        switch ($input) {
-            case 'up':
-                $this->moveUp();
-                break;
-            case 'down':
-                $this->moveDown();
-                break;
-            case 'enter':
-                return $this->selectOption();
+        $navigationControl = false;
+        while (!$navigationControl) {
+            $input = CLI::getInput();
+            $navigationControl = match ($input) {
+                "up" => $this->moveUp(),
+                "down" => $this->moveDown(),
+                "enter" => $this->selectOption(),
+                default => null,
+            };
         }
-        return null;
+        return $navigationControl;
     }
 
-    protected function moveUp(): void
+    protected function moveUp(): bool
     {
         if ($this->selectedIndex > 0) {
             $this->selectedIndex--;
+            return true;
         }
+        return false;
     }
 
-    protected function moveDown(): void
+    protected function moveDown(): bool
     {
         if ($this->selectedIndex < count($this->options) - 1) {
             $this->selectedIndex++;
+            return true;
         }
+        return false;
     }
 
     protected function selectOption()
@@ -42,7 +45,10 @@ abstract class BaseState implements State
         return $this->createState($selectedOption);
     }
 
-    abstract protected function createState($selectedOption);
+    protected function createState($selectedOption)
+    {
+        return $this->options[$selectedOption];
+    }
 
     public function getOptions(): array
     {

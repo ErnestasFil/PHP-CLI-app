@@ -28,7 +28,7 @@ class DataImportTable
     private static function importData(array $data, $modelClass): void
     {
         foreach ($data as $row) {
-            print_r($modelClass::insert($row));
+            $modelClass::insert($row);
         }
     }
 

@@ -7,8 +7,8 @@ class MenuState extends BaseState
 
     public function display(): void
     {
-        self::__init();
         ConsoleStyle::clearScreen();
+        self::__init();
         TextTable::displayText($this->lines);
     }
 
@@ -25,10 +25,5 @@ class MenuState extends BaseState
             "To change the menu state, use the arrow keys on your keyboard.",
             "To confirm your selection click on the \"ENTER\" button."
         ];
-    }
-
-    protected function createState($selectedOption)
-    {
-        return $this->options[$selectedOption];
     }
 }

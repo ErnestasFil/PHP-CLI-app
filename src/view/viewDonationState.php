@@ -4,7 +4,14 @@ class ViewDonationState extends BaseState
 {
     protected array $options;
 
-    public function __init()
+    public function display(): void
+    {
+        ConsoleStyle::clearScreen();
+        self::__init();
+        $this->donationsTable();
+    }
+
+    public function __init(): void
     {
         $this->options = [
             "Add donation" => new AddCharityState(),
@@ -12,18 +19,6 @@ class ViewDonationState extends BaseState
             "Delete donation" => new MenuState(),
             "Back" => new MenuState(),
         ];
-    }
-
-    public function display(): void
-    {
-        self::__init();
-        ConsoleStyle::clearScreen();
-        $this->donationsTable();
-    }
-
-    protected function createState($selectedOption): BaseState
-    {
-        return $this->options[$selectedOption];
     }
 
     private function donationsTable(): void
@@ -36,5 +31,10 @@ class ViewDonationState extends BaseState
         }, $donations);
 
         DataTable::displayTable($headers, $rows);
+    }
+
+    protected function createState($selectedOption): BaseState
+    {
+        return $this->options[$selectedOption];
     }
 }

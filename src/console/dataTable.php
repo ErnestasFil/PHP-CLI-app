@@ -4,19 +4,23 @@ class DataTable
 {
     public static function displayTable(array $headers, array $rows): void
     {
-        $columnWidths = self::calculateColumnWidths($headers, $rows);
-        $lineWidth = self::calculateLineWidth($columnWidths);
+        if (!empty($rows)) {
+            $columnWidths = self::calculateColumnWidths($headers, $rows);
+            $lineWidth = self::calculateLineWidth($columnWidths);
 
-        self::printLine($lineWidth);
-        self::printRow($headers, $columnWidths);
-        self::printLine($lineWidth);
+            self::printLine($lineWidth);
+            self::printRow($headers, $columnWidths);
+            self::printLine($lineWidth);
 
-        foreach ($rows as $row) {
-            self::printRow($row, $columnWidths);
+            foreach ($rows as $row) {
+                self::printRow($row, $columnWidths);
+            }
+
+            self::printLine($lineWidth);
+            echo PHP_EOL;
+        } else {
+            TextTable::displayText(["/cNo data found in database:"]);
         }
-
-        self::printLine($lineWidth);
-        echo PHP_EOL;
     }
 
     private static function calculateColumnWidths(array $headers, array $rows): array

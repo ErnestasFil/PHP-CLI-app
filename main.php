@@ -5,6 +5,7 @@ require_once './src/console/consoleStyle.php';
 require_once './src/console/dataTable.php';
 require_once './src/console/textTable.php';
 require_once './src/console/dataImportTable.php';
+require_once './src/console/dataInsertTable.php';
 require_once './src/view/state.php';
 require_once './src/view/baseState.php';
 require_once './src/view/menuState.php';

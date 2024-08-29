@@ -11,11 +11,9 @@ class StateManager
 
     public function run(): void
     {
-        ConsoleStyle::clearScreen();
         $this->state->display();
         $this->displayOptions();
         $nextState = $this->state->handleInput();
-
         if ($nextState instanceof State) {
             $this->setState($nextState);
         }

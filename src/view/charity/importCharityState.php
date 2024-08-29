@@ -7,8 +7,8 @@ class ImportCharityState extends BaseState
 
     public function display(): void
     {
-        self::__init();
         ConsoleStyle::clearScreen();
+        self::__init();
         TextTable::displayText($this->lines);
 
         $selectedFile = CLI::getSelectedFile();
@@ -36,11 +36,5 @@ class ImportCharityState extends BaseState
         $this->lines = [
             "/cSelect CSV file with charities data."
         ];
-    }
-
-
-    protected function createState($selectedOption)
-    {
-        return $this->options[$selectedOption];
     }
 }

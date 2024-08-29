@@ -6,8 +6,8 @@ class ViewCharityState extends BaseState
 
     public function display(): void
     {
-        self::__init();
         ConsoleStyle::clearScreen();
+        self::__init();
         $this->charitiesTable();
     }
 
@@ -33,8 +33,5 @@ class ViewCharityState extends BaseState
         DataTable::displayTable($headers, $rows);
     }
 
-    protected function createState($selectedOption): BaseState
-    {
-        return $this->options[$selectedOption];
-    }
+
 }

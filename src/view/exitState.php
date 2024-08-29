@@ -7,8 +7,8 @@ class ExitState extends BaseState
 
     public function display(): void
     {
-        self::__init();
         ConsoleStyle::clearScreen();
+        self::__init();
         TextTable::displayText($this->lines);
     }
 
