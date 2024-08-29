@@ -1,6 +1,6 @@
 <?php
 
-class ExitState extends BaseState
+class ManuallyAddCharityState extends BaseState
 {
     protected array $options;
     protected array $lines;
@@ -15,22 +15,16 @@ class ExitState extends BaseState
     public function __init(): void
     {
         $this->options = [
-            'Yes' => "Exit",
-            'No' => new MenuState()
-        ];
 
-        $this->lines = [
-            "/cAre you sure that you want to stop this program?",
+            'Back' => new ViewCharityState()
         ];
+//        $this->lines = [
+//            "/cChoose how you would like to add charity information."
+//        ];
     }
 
     protected function createState($selectedOption)
     {
-        if ($selectedOption == "No")
-            return $this->options[$selectedOption];
-
-        ConsoleStyle::clearScreen();
-        echo "\033[?25h";
-        exit('');
+        return $this->options[$selectedOption];
     }
 }

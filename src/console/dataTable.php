@@ -18,15 +18,6 @@ class DataTable
         self::printLine($lineWidth);
         echo PHP_EOL;
     }
-    public static function printLine(int $lenght): void
-    {
-        echo str_repeat('*', $lenght) . PHP_EOL;
-    }
-
-    private static function printRow(array $row, array $widths): void
-    {
-        echo sprintf("|%s|" . PHP_EOL, implode('|', array_map(fn($w, $c) => sprintf(" %-{$w}s", $c), $widths, $row)));
-    }
 
     private static function calculateColumnWidths(array $headers, array $rows): array
     {
@@ -38,5 +29,15 @@ class DataTable
     private static function calculateLineWidth(array $widths): int
     {
         return array_sum($widths) + count($widths) * 2 + 1;
+    }
+
+    public static function printLine(int $length): void
+    {
+        echo str_repeat('*', $length) . PHP_EOL;
+    }
+
+    private static function printRow(array $row, array $widths): void
+    {
+        echo sprintf("|%s|" . PHP_EOL, implode('|', array_map(fn($w, $c) => sprintf(" %-{$w}s", $c), $widths, $row)));
     }
 }

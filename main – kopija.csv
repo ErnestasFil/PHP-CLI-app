@@ -1,19 +1,18 @@
+name,email
 <?php
 
 require_once './src/CLI.php';
 require_once './src/console/consoleStyle.php';
 require_once './src/console/dataTable.php';
 require_once './src/console/textTable.php';
-require_once './src/console/dataImportTable.php';
 require_once './src/view/state.php';
 require_once './src/view/baseState.php';
 require_once './src/view/menuState.php';
 require_once './src/view/exitState.php';
-require_once './src/view/charity/viewCharityState.php';
-require_once './src/view/charity/importCharityState.php';
-require_once './src/view/charity/addCharityState.php';
-require_once './src/view/charity/manuallyAddCharityState.php';
+require_once './src/view/viewCharityState.php';
+require_once './src/view/importCharityState.php';
 require_once './src/view/viewDonationState.php';
+require_once './src/view/addCharityState.php';
 require_once './src/view/stateManager.php';
 require_once './src/database/databaseManager.php';
 require_once './src/model/model.php';
@@ -30,7 +29,6 @@ require_once './src/rule/maxRule.php';
 require_once './src/rule/minRule.php';
 require_once './src/rule/notEmptyRule.php';
 require_once './src/rule/stringRule.php';
-require_once './src/rule/uniqueRule.php';
 
 $initialState = new MenuState();
 $stateManager = new StateManager($initialState);
@@ -68,5 +66,26 @@ while (true) {
 // echo "\nDonations:\n";
 // foreach ($donations as $d) {
 //     echo "{$d['id']}: {$d['donor_name']} donated {$d['amount']} to charity ID {$d['charity_id']} on {$d['date_time']}\n";
+// }
+
+
+// function getSelectedFile()
+// {
+//     $command = 'python -c "exec(\'import tkinter as tk\nfrom tkinter import filedialog\nroot=tk.Tk()\nroot.withdraw()\nfile_path=filedialog.askopenfilename(filetypes=[(\\"CSV files\\", \\"*.csv\\")])\nif file_path:\n    print(file_path)\')"';
+//     $output = [];
+//     exec($command, $output);
+
+//     if (isset($output[0])) {
+//         return trim($output[0]);
+//     }
+
+//     return null;
+// }
+
+// $selectedFile = getSelectedFile();
+// if ($selectedFile) {
+//     echo "You selected: $selectedFile\n";
+// } else {
+//     echo "No file selected.\n";
 // }
 

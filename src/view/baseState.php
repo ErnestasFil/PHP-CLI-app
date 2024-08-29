@@ -1,8 +1,9 @@
 <?php
+
 abstract class BaseState implements State
 {
     protected array $options = [];
-    protected $selectedIndex = 0;
+    protected int $selectedIndex = 0;
 
     public function handleInput()
     {
@@ -16,20 +17,18 @@ abstract class BaseState implements State
                 break;
             case 'enter':
                 return $this->selectOption();
-            case 'esc':
-                return 'back';
         }
         return null;
     }
 
-    protected function moveUp()
+    protected function moveUp(): void
     {
         if ($this->selectedIndex > 0) {
             $this->selectedIndex--;
         }
     }
 
-    protected function moveDown()
+    protected function moveDown(): void
     {
         if ($this->selectedIndex < count($this->options) - 1) {
             $this->selectedIndex++;
@@ -43,14 +42,15 @@ abstract class BaseState implements State
         return $this->createState($selectedOption);
     }
 
-    public function getOptions()
+    abstract protected function createState($selectedOption);
+
+    public function getOptions(): array
     {
         return $this->options;
     }
 
-    public function getSelectedIndex()
+    public function getSelectedIndex(): int
     {
         return $this->selectedIndex;
     }
-    abstract protected function createState($selectedOption);
 }

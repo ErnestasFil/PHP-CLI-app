@@ -18,14 +18,19 @@ class ConsoleStyle
     const INVISIBLE_CURSOR = "\033[?25l";
     const VISIBLE_CURSOR = "\033[?25h";
 
-    public static function apply($text, $styles = [])
+    public static function apply($text, $styles = []): string
     {
         $styleCodes = array_map(fn($style) => constant("self::$style"), $styles);
-        return implode('', $styleCodes) . $text . PHP_EOL . self::RESET;
+        return implode('', $styleCodes) . $text . self::RESET;
     }
 
     public static function clearScreen(): void
     {
         echo self::INVISIBLE_CURSOR . self::START_CURSOR . self::CLEAR_SCREEN;
+    }
+
+    public static function stripAnsiCodes($text): string
+    {
+        return preg_replace('/\033\[[0-9;]*m/', '', $text);
     }
 }

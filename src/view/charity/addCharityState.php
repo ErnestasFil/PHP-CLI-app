@@ -5,18 +5,6 @@ class AddCharityState extends BaseState
     protected array $options;
     protected $lines;
 
-    public function __init()
-    {
-        $this->options = [
-            'Import CSV file' => new ViewCharityView(),
-            'Add manually' => new ViewCharityView(),
-            'Back' => new ViewCharityView()
-        ];
-        $this->lines = [
-            "/cChoose how you would like to add charity information."
-        ];
-    }
-
     public function display()
     {
         self::__init();
@@ -24,6 +12,17 @@ class AddCharityState extends BaseState
         TextTable::displayText($this->lines);
     }
 
+    public function __init()
+    {
+        $this->options = [
+            'Import CSV file' => new ImportCharityState(),
+            'Add manually' => new ViewCharityState(),
+            'Back' => new ViewCharityState()
+        ];
+        $this->lines = [
+            "/cChoose how you would like to add charity information."
+        ];
+    }
 
     protected function createState($selectedOption)
     {
