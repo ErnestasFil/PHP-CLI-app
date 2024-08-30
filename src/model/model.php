@@ -4,7 +4,7 @@ abstract class Model
 {
     protected static PDO $pdo;
     protected $table;
-    protected $primaryKey = 'id';
+    protected string $primaryKey = 'id';
 
     public function __construct()
     {
@@ -54,6 +54,16 @@ abstract class Model
         return $stmt->fetchColumn();
     }
 
+    public static function updateById(int $id, array $data): void
+    {
+        $instance = new static();
+        $fields = array_keys($data);
+        $setClause = implode(', ', array_map(fn($field) => "$field = ?", $fields));
+        $sql = "UPDATE $instance->table SET $setClause WHERE $instance->primaryKey = ?";
+        $stmt = self::$pdo->prepare($sql);
+        $stmt->execute([...array_values($data), $id]);
+    }
+
 
     // public function delete($id)
     // {
@@ -62,15 +72,5 @@ abstract class Model
     //     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     //     $stmt->execute();
     // }
-
-    // public function findById($id)
-    // {
-    //     $sql = "SELECT * FROM {$this->table} WHERE {$this->primaryKey} = :id";
-    //     $stmt = $this->pdo->prepare($sql);
-    //     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    //     $stmt->execute();
-    //     return $stmt->fetch(PDO::FETCH_ASSOC);
-    // }
-
 
 }

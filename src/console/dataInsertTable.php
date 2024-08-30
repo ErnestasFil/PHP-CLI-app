@@ -2,13 +2,10 @@
 
 class DataInsertTable
 {
-    public static function createTable(array $result, string $modelName, $modelClass = null): bool
+    public static function createTable(array $result, string $modelName): bool
     {
         if (isset($result['data'])) {
             self::createDataTable($result['data'], $modelName);
-            if ($modelClass !== null) {
-                $modelClass::insert($result['data']);
-            }
             return true;
         } else {
             self::createErrorTable($result['error']);
@@ -19,7 +16,7 @@ class DataInsertTable
     public static function createDataTable(array $data, string $modelName): void
     {
         ConsoleStyle::clearScreen();
-        TextTable::displayText(["/cData which will be added to $modelName table:"]);
+        TextTable::displayText(["/cData which will be shown in $modelName table:"]);
         $headers = array_keys($data);
         $rows = array_values($data);
         DataTable::displayTable($headers, [$rows]);
@@ -28,7 +25,7 @@ class DataInsertTable
     public static function createErrorTable(array $errors): void
     {
         ConsoleStyle::clearScreen();
-        TextTable::displayText(["/cError when adding data:"]);
+        TextTable::displayText(["/cError with data:"]);
 
         $lines = [];
         foreach ($errors as $field => $messages) {

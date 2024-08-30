@@ -1,51 +1,47 @@
 <?php
 
-class ManuallyAddCharityState extends BaseState
+class EditCharityState extends BaseState
 {
     protected array $options;
+    protected int $charityId;
+    protected Validator $validator;
     protected array $lines;
     protected array $receivedData;
-    protected Validator $validator;
     protected bool $inserted = false;
     protected bool $noError = false;
 
-    public function __construct(array $receivedData = [])
+    public function __construct(int $charityId, array $receivedData = null)
     {
-        $this->receivedData = $receivedData;
+        $this->charityId = $charityId;
+        $this->receivedData = $receivedData !== null ? $receivedData : Charity::findById($charityId);
     }
 
     public function display(): void
     {
-
         ConsoleStyle::clearScreen();
         if (!$this->inserted) {
             self::__init();
             TextTable::displayText($this->lines);
             $this->inserted = 1;
             $this->noError = $this->handleCharityInput();
-            if ($this->noError) {
-                $this->options = ['Add more charities' => new ManuallyAddCharityState()] + $this->options;
-            } else {
+            if (!$this->noError) {
                 $this->options = [
-                        'Fix previously inserted data' => new ManuallyAddCharityState($this->receivedData),
-                        'Try again' => new ManuallyAddCharityState()]
-                    + $this->options;
+                        'Fix previously edited data' => new EditCharityState($this->charityId, $this->receivedData)] + $this->options;
             }
-        } else {
-            if ($this->noError)
-                DataInsertTable::createDataTable($this->receivedData, 'Charity');
-            else
-                DataInsertTable::createErrorTable($this->validator->getErrors());
-        }
+        } else
+            DataInsertTable::createErrorTable($this->validator->getErrors());
+
     }
 
     public function __init(): void
     {
         $this->options = [
-            'Back' => new AddCharityState()
+            "Back" => new SelectEditCharityState(),
         ];
         $this->lines = [
-            "/cInsert new data for Charities table."
+            "/cInformation edit for charity id: {$this->charityId}.",
+            "/br",
+            "Leave input empty if you want to keep original or edited value and press \"ENTER\"!"
         ];
     }
 
@@ -53,12 +49,12 @@ class ManuallyAddCharityState extends BaseState
     {
         $rules = [
             'name' => ['notEmpty', 'min:str:5', 'max:str:20', 'string'],
-            'email' => ['notEmpty', 'email', 'unique:Charity:email']
+            'email' => ['notEmpty', 'email']
         ];
 
         $variables = [
-            "name" => "Enter charity name: ",
-            "email" => "Enter charity email: "
+            "name" => "Enter new charity name: ",
+            "email" => "Enter new charity email: "
         ];
         return $this->handleDataInput($rules, $variables);
     }
@@ -70,7 +66,7 @@ class ManuallyAddCharityState extends BaseState
         $validationResult = $this->validator->validateInput($this->receivedData);
         $valid = DataInsertTable::createTable($validationResult, 'Charity');
         if ($valid)
-            Charity::insert($validationResult['data']);
+            Charity::updateById($this->charityId, $validationResult['data']);
         return $valid;
     }
 }

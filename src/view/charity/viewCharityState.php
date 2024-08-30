@@ -15,7 +15,7 @@ class ViewCharityState extends BaseState
     {
         $this->options = [
             "Add charity" => new AddCharityState(),
-            "Edit charity" => new MenuState(),
+            "Edit charity" => new SelectEditCharityState(),
             "Delete charity" => new MenuState(),
             "Back" => new MenuState(),
         ];

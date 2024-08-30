@@ -30,7 +30,7 @@ class ExitState extends BaseState
             return $this->options[$selectedOption];
 
         ConsoleStyle::clearScreen();
-        echo "\033[?25h";
+        echo ConsoleStyle::VISIBLE_CURSOR;
         exit('');
     }
 }

@@ -2,18 +2,26 @@
 
 class DataTable
 {
-    public static function displayTable(array $headers, array $rows): void
+    public static function displayTable(array $headers, array $rows, int $selectedIndex = -1): void
     {
         if (!empty($rows)) {
             $columnWidths = self::calculateColumnWidths($headers, $rows);
             $lineWidth = self::calculateLineWidth($columnWidths);
 
             self::printLine($lineWidth);
-            self::printRow($headers, $columnWidths);
+            echo self::printRow($headers, $columnWidths);
             self::printLine($lineWidth);
 
-            foreach ($rows as $row) {
-                self::printRow($row, $columnWidths);
+            foreach ($rows as $index => $row) {
+                if ($selectedIndex >= 0) {
+                    if ($index === $selectedIndex) {
+                        echo ConsoleStyle::apply(self::printRow($row, $columnWidths), ['GREEN', 'BLINK']);
+                    } else {
+                        echo self::printRow($row, $columnWidths);
+                    }
+                } else {
+                    echo self::printRow($row, $columnWidths);
+                }
             }
 
             self::printLine($lineWidth);
@@ -40,8 +48,8 @@ class DataTable
         echo str_repeat('*', $length) . PHP_EOL;
     }
 
-    private static function printRow(array $row, array $widths): void
+    private static function printRow(array $row, array $widths): string
     {
-        echo sprintf("|%s|" . PHP_EOL, implode('|', array_map(fn($w, $c) => sprintf(" %-{$w}s", $c), $widths, $row)));
+        return sprintf("|%s|" . PHP_EOL, implode('|', array_map(fn($w, $c) => sprintf(" %-{$w}s", $c), $widths, $row)));
     }
 }

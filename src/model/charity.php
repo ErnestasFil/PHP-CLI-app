@@ -6,7 +6,7 @@ class Charity extends Model
     public $name;
     public $email;
     protected $table = 'charities';
-    protected $primaryKey = 'id';
+    protected string $primaryKey = 'id';
 
     public static function importColumns()
     {

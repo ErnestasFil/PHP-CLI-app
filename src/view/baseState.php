@@ -3,6 +3,8 @@
 abstract class BaseState implements State
 {
     protected array $options = [];
+    protected array $tableData = [];
+    protected array $tableHeader = [];
     protected int $selectedIndex = 0;
 
     public function handleInput()
@@ -53,6 +55,16 @@ abstract class BaseState implements State
     public function getOptions(): array
     {
         return $this->options;
+    }
+
+    public function getTableData(): array
+    {
+        return $this->tableData;
+    }
+
+    public function getTableHeader(): array
+    {
+        return $this->tableHeader;
     }
 
     public function getSelectedIndex(): int

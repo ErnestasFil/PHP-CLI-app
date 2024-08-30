@@ -31,6 +31,7 @@ class CLI
 
     public static function getDataInput(array $variables, array $defaultValues = null): array
     {
+        echo ConsoleStyle::VISIBLE_CURSOR;
         $receivedData = [];
         foreach ($variables as $key => $message) {
             echo $message;
