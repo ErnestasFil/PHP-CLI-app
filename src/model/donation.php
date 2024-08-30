@@ -7,7 +7,7 @@ class Donation extends Model
     public $amount;
     public $charity_id;
     public $date_time;
-    protected $table = 'donations';
+    protected string $table = 'donations';
 
 //     public function __construct($donor_name = null, $amount = null, $charity_id = null)
 //     {

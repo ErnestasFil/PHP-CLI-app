@@ -15,17 +15,17 @@ class DatabaseManager
         }
     }
 
-    public function getPDO()
-    {
-        return $this->pdo;
-    }
-
-    private function enableForeignKeySupport()
+    private function enableForeignKeySupport(): void
     {
         $this->pdo->exec("PRAGMA foreign_keys = ON;");
     }
 
-    public function createTables()
+    public function getPDO(): PDO
+    {
+        return $this->pdo;
+    }
+
+    public function createTables(): void
     {
         $charityTable = "CREATE TABLE IF NOT EXISTS charities (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,8 +39,8 @@ class DatabaseManager
                             amount REAL NOT NULL,
                             charity_id INTEGER NOT NULL,
                             date_time TEXT NOT NULL,
-                            FOREIGN KEY (charity_id) REFERENCES charities(id)
-                         );";
+                            FOREIGN KEY (charity_id) REFERENCES charities(id) ON DELETE CASCADE
+                     );";
 
         $this->pdo->exec($charityTable);
         $this->pdo->exec($donationTable);

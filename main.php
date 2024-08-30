@@ -16,6 +16,8 @@ require_once './src/view/charity/addCharityState.php';
 require_once './src/view/charity/manuallyAddCharityState.php';
 require_once './src/view/charity/selectEditCharityState.php';
 require_once './src/view/charity/editCharityState.php';
+require_once './src/view/charity/selectDeleteCharityState.php';
+require_once './src/view/charity/deleteCharityState.php';
 require_once './src/view/viewDonationState.php';
 require_once './src/view/stateManager.php';
 require_once './src/database/databaseManager.php';

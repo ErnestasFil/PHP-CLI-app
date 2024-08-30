@@ -2,7 +2,7 @@
 
 class DataInsertTable
 {
-    public static function createTable(array $result, string $modelName): bool
+    public static function createTable(array $result, string $modelName = ""): bool
     {
         if (isset($result['data'])) {
             self::createDataTable($result['data'], $modelName);
@@ -15,8 +15,10 @@ class DataInsertTable
 
     public static function createDataTable(array $data, string $modelName): void
     {
-        ConsoleStyle::clearScreen();
-        TextTable::displayText(["/cData which will be shown in $modelName table:"]);
+        if (strlen($modelName) > 0) {
+            ConsoleStyle::clearScreen();
+            TextTable::displayText(["/cData which will be shown in $modelName table:"]);
+        }
         $headers = array_keys($data);
         $rows = array_values($data);
         DataTable::displayTable($headers, [$rows]);

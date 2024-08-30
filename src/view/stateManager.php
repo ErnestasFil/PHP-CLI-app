@@ -25,7 +25,7 @@ class StateManager
         $header = $this->state->getTableHeader();
         $rows = $this->state->getTableData();
         if (!empty($rows)) {
-            DataTable::displayTable($header, $rows, $this->state->getSelectedIndex());
+            DataTable::displayTable($header, $rows, $this->state->getSelectedIndex(), $this->state->getColor());
         }
     }
 

@@ -3,7 +3,7 @@
 abstract class Model
 {
     protected static PDO $pdo;
-    protected $table;
+    protected string $table;
     protected string $primaryKey = 'id';
 
     public function __construct()
@@ -64,13 +64,12 @@ abstract class Model
         $stmt->execute([...array_values($data), $id]);
     }
 
-
-    // public function delete($id)
-    // {
-    //     $sql = "DELETE FROM {$this->table} WHERE {$this->primaryKey} = :id";
-    //     $stmt = $this->pdo->prepare($sql);
-    //     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    //     $stmt->execute();
-    // }
+    public static function deleteById(int $id): void
+    {
+        $instance = new static();
+        $sql = "DELETE FROM $instance->table WHERE $instance->primaryKey = ?";
+        $stmt = self::$pdo->prepare($sql);
+        $stmt->execute([$id]);
+    }
 
 }

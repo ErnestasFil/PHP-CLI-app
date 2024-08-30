@@ -1,12 +1,12 @@
 <?php
 
-class SelectEditCharityState extends BaseState
+class SelectDeleteCharityState extends BaseState
 {
     protected array $options;
     protected array $lines;
     protected array $tableData;
     protected array $tableHeader;
-    protected string $color = "GREEN";
+    protected string $color = "RED";
 
     public function display(): void
     {
@@ -26,7 +26,7 @@ class SelectEditCharityState extends BaseState
         }, $charities);
 
         foreach ($charities as $charity) {
-            $this->options["Edit Charity ID " . $charity->id] = new EditCharityState($charity->id);
+            $this->options["Delete Charity ID " . $charity->id] = new DeleteCharityState($charity->id);
         }
     }
 
@@ -34,7 +34,10 @@ class SelectEditCharityState extends BaseState
     {
         $this->options["Back"] = new ViewCharityState();
         $this->lines = [
-            "/cChoose which charity information you want to edit and press \"ENTER\"."
+            "/cChoose which charity information you want to delete and press \"ENTER\".",
+            "/br",
+            "/c" . ConsoleStyle::apply("Information, which have donation data will be removed also!", ["RED"])
         ];
     }
+
 }

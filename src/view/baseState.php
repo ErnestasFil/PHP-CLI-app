@@ -6,6 +6,7 @@ abstract class BaseState implements State
     protected array $tableData = [];
     protected array $tableHeader = [];
     protected int $selectedIndex = 0;
+    protected string $color;
 
     public function handleInput()
     {
@@ -70,5 +71,10 @@ abstract class BaseState implements State
     public function getSelectedIndex(): int
     {
         return $this->selectedIndex;
+    }
+
+    public function getColor(): string
+    {
+        return $this->color;
     }
 }
