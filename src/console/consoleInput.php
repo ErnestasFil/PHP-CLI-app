@@ -1,6 +1,6 @@
 <?php
 
-class CLI
+class ConsoleInput
 {
     public static function getInput(): string
     {

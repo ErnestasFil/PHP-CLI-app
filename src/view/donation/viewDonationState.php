@@ -27,7 +27,7 @@ class ViewDonationState extends BaseState
 
         $headers = ['ID', 'Charity ID', 'Donor name', 'Amount', 'Date'];
         $rows = array_map(function ($donation) {
-            return [$donation->id, $donation->charity_id, $donation->donor_name, $donation->amount, $donation->date_time];
+            return [$donation->id, $donation->charity_id, $donation->donor_name, number_format($donation->amount, 2), $donation->date_time];
         }, $donations);
 
         DataTable::displayTable($headers, $rows);

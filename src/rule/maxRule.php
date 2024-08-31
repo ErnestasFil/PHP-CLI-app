@@ -15,7 +15,7 @@ class MaxRule implements Rule
         }
     }
 
-    public function passes($value): bool
+    public function passes(mixed $value): bool
     {
         if ($value === null) return false;
         return match ($this->type) {
@@ -26,7 +26,7 @@ class MaxRule implements Rule
         };
     }
 
-    protected function validateDateTime($value): bool
+    protected function validateDateTime(mixed $value): bool
     {
         try {
             $valueDate = new DateTime($value);

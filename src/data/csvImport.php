@@ -2,7 +2,7 @@
 
 class CSVImport
 {
-    public static function import(string $filePath, $modelClass, Validator $validator = null): array
+    public static function import(string $filePath, mixed $modelClass, Validator $validator = null): array
     {
         $importColumns = $modelClass::importColumns();
         if (($handle = fopen($filePath, 'r')) !== false) {

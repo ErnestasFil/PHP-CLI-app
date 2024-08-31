@@ -2,11 +2,11 @@
 
 class TextTable
 {
-    const  CONSOLE_WIDTH = 90;
+
 
     public static function displayText(array $lines): void
     {
-        DataTable::printLine(self::CONSOLE_WIDTH);
+        DataTable::printLine(ConsoleStyle::CONSOLE_WIDTH);
 
         foreach ($lines as $line) {
             $alignment = 'left';
@@ -17,21 +17,21 @@ class TextTable
                 $line = substr($line, 2);
                 $alignment = 'right';
             } elseif (str_starts_with($line, '/br')) {
-                DataTable::printLine(self::CONSOLE_WIDTH);
+                DataTable::printLine(ConsoleStyle::CONSOLE_WIDTH);
                 continue;
             }
             $strippedLine = ConsoleStyle::stripAnsiCodes($line);
 
             $paddedLine = match ($alignment) {
-                'left' => str_pad($line, self::CONSOLE_WIDTH - 4 + mb_strlen($line) - mb_strlen($strippedLine)),
-                'right' => str_pad($line, self::CONSOLE_WIDTH - 4 + mb_strlen($line) - mb_strlen($strippedLine), ' ', STR_PAD_LEFT),
-                'center' => str_pad($line, self::CONSOLE_WIDTH - 4 + mb_strlen($line) - mb_strlen($strippedLine), ' ', STR_PAD_BOTH)
+                'left' => str_pad($line, ConsoleStyle::CONSOLE_WIDTH - 4 + mb_strlen($line) - mb_strlen($strippedLine)),
+                'right' => str_pad($line, ConsoleStyle::CONSOLE_WIDTH - 4 + mb_strlen($line) - mb_strlen($strippedLine), ' ', STR_PAD_LEFT),
+                'center' => str_pad($line, ConsoleStyle::CONSOLE_WIDTH - 4 + mb_strlen($line) - mb_strlen($strippedLine), ' ', STR_PAD_BOTH)
             };
 
             echo "| {$paddedLine} |" . PHP_EOL;
         }
 
-        DataTable::printLine(self::CONSOLE_WIDTH);
+        DataTable::printLine(ConsoleStyle::CONSOLE_WIDTH);
         echo PHP_EOL;
     }
 }

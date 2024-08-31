@@ -2,7 +2,7 @@
 
 class DataImportTable
 {
-    public static function createTable(array $result, string $modelName, $modelClass = null): void
+    public static function createTable(array $result, string $modelName, mixed $modelClass = null): void
     {
         if (isset($result['data'])) {
             self::createDataTable($result['data'], $modelName);
@@ -29,7 +29,7 @@ class DataImportTable
         }
     }
 
-    private static function importData(array $data, $modelClass): void
+    private static function importData(array $data, mixed $modelClass): void
     {
         foreach ($data as $row) {
             $modelClass::insert($row);

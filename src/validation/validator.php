@@ -4,21 +4,21 @@ class Validator
 {
     protected array $rules = [];
     protected array $errors = [];
-    protected $stopOnFirstFailure = false;
+    protected bool $stopOnFirstFailure = false;
 
-    public function __construct($rules, $stopOnFirstFailure = false)
+    public function __construct(array $rules, bool $stopOnFirstFailure = false)
     {
         $this->rules = $rules;
         $this->stopOnFirstFailure = $stopOnFirstFailure;
     }
 
-    public function validateInput($data): array
+    public function validateInput(array $data): array
     {
         return self::validate($data) ? ["data" => $data] : ["error" => self::getErrors()];
 
     }
 
-    public function validate($data)
+    public function validate(array $data): bool
     {
         $this->errors = [];
         foreach ($this->rules as $attribute => $rules) {

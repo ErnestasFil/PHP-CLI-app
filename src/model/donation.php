@@ -2,11 +2,11 @@
 
 class Donation extends Model
 {
-    public $id;
-    public $donor_name;
-    public $amount;
-    public $charity_id;
-    public $date_time;
+    public int $id;
+    public string $donor_name;
+    public float $amount;
+    public int $charity_id;
+    public string $date_time;
     protected string $table = 'donations';
 
     public static function importColumns(): array
@@ -18,5 +18,4 @@ class Donation extends Model
             'date_time' => 'date_time',
         ];
     }
-// }
 }

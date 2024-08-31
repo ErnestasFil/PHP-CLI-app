@@ -2,7 +2,7 @@
 
 class RuleFactory
 {
-    public static function make($rule)
+    public static function make(string $rule): mixed
     {
         [$ruleName, $parameters] = self::parseRule($rule);
         if (!empty($parameters))
@@ -24,9 +24,9 @@ class RuleFactory
         return new $className($type, $parameter);
     }
 
-    private static function parseRule($rule): array
+    private static function parseRule(string $rule): array
     {
-        if (is_string($rule) && str_contains($rule, ':')) {
+        if (str_contains($rule, ':')) {
             return explode(':', $rule, 2);
         }
         return [$rule, null];

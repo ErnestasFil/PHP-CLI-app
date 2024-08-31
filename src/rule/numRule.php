@@ -11,7 +11,7 @@ class NumRule implements Rule
         $this->decimalPlaces = $decimalPlaces;
     }
 
-    public function passes($value): bool
+    public function passes(mixed $value): bool
     {
         if (!is_numeric($value)) return false;
         return match ($this->type) {
@@ -21,12 +21,12 @@ class NumRule implements Rule
         };
     }
 
-    protected function validateInteger($value): bool
+    protected function validateInteger(mixed $value): bool
     {
         return filter_var($value, FILTER_VALIDATE_INT) !== false;
     }
 
-    protected function validateDouble($value): bool
+    protected function validateDouble(mixed $value): bool
     {
         if (filter_var($value, FILTER_VALIDATE_FLOAT) === false)
             return false;

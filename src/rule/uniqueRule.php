@@ -2,16 +2,16 @@
 
 class UniqueRule implements Rule
 {
-    protected $modelName;
+    protected mixed $modelName;
     protected string $columnName;
 
-    public function __construct($modelName, $columnName)
+    public function __construct(mixed $modelName, string $columnName)
     {
         $this->modelName = $modelName;
         $this->columnName = $columnName;
     }
 
-    public function passes($value): bool
+    public function passes(mixed $value): bool
     {
         return $this->modelName::getCount($this->columnName, $value) === 0;
     }

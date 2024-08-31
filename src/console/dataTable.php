@@ -27,14 +27,14 @@ class DataTable
             self::printLine($lineWidth);
             echo PHP_EOL;
         } else {
-            TextTable::displayText(["/cNo data found in database:"]);
+            TextTable::displayText(["/cNo data found in database"]);
         }
     }
 
     private static function calculateColumnWidths(array $headers, array $rows): array
     {
         return array_map(function ($header, $index) use ($rows) {
-            return max(strlen($header), ...array_map(fn($row) => strlen($row[$index]), $rows)) + 1;
+            return max(mb_strwidth($header, 'utf-8'), ...array_map(fn($row) => mb_strwidth($row[$index], 'utf-8'), $rows)) + 1;
         }, $headers, array_keys($headers));
     }
 
@@ -50,6 +50,7 @@ class DataTable
 
     private static function printRow(array $row, array $widths): string
     {
-        return sprintf("|%s|" . PHP_EOL, implode('|', array_map(fn($w, $c) => sprintf(" %-{$w}s", $c), $widths, $row)));
+        return sprintf("|%s|" . PHP_EOL, implode('|', array_map(fn($width, $cell) => ConsoleStyle::fixPadding($cell, $width), $widths, $row)));
     }
+
 }

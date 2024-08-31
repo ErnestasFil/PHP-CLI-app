@@ -9,7 +9,7 @@ class DateTimeRule implements Rule
         $this->format = 'Y-m-d H:i:s';
     }
 
-    public function passes($value): bool
+    public function passes(mixed $value): bool
     {
         $dateTime = DateTime::createFromFormat($this->format, $value);
         return $dateTime && $dateTime->format($this->format) === $value;

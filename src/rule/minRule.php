@@ -5,13 +5,13 @@ class MinRule implements Rule
     protected int $min;
     protected string $type;
 
-    public function __construct($type, $min)
+    public function __construct(string $type, int $min)
     {
         $this->type = $type;
         $this->min = $min;
     }
 
-    public function passes($value): bool
+    public function passes(mixed $value): bool
     {
         if ($value === null) return false;
         return match ($this->type) {

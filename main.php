@@ -1,7 +1,6 @@
 <?php
 
-require_once './src/CLI.php';
-
+require_once './src/console/consoleInput.php';
 require_once './src/console/consoleStyle.php';
 require_once './src/console/dataTable.php';
 require_once './src/console/textTable.php';

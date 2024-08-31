@@ -62,7 +62,7 @@ class EditCharityState extends BaseState
     protected function handleDataInput(array $rules, array $variables): bool
     {
         $this->validator = new Validator($rules, false);
-        $this->receivedData = CLI::getDataInput($variables, $this->receivedData);
+        $this->receivedData = ConsoleInput::getDataInput($variables, $this->receivedData);
         $validationResult = $this->validator->validateInput($this->receivedData);
         $valid = DataInsertTable::createTable($validationResult, 'Charity');
         if ($valid)

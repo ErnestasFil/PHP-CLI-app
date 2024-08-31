@@ -2,7 +2,7 @@
 
 class NotEmptyRule implements Rule
 {
-    public function passes($value): bool
+    public function passes(mixed $value): bool
     {
         return !empty($value);
     }

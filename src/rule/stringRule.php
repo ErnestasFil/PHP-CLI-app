@@ -2,7 +2,7 @@
 
 class StringRule implements Rule
 {
-    public function passes($value): bool
+    public function passes(mixed $value): bool
     {
         return is_string($value);
     }

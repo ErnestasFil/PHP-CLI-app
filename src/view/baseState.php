@@ -8,11 +8,11 @@ abstract class BaseState implements State
     protected int $selectedIndex = 0;
     protected string $color;
 
-    public function handleInput()
+    public function handleInput(): BaseState|bool
     {
         $navigationControl = false;
         while (!$navigationControl) {
-            $input = CLI::getInput();
+            $input = ConsoleInput::getInput();
             $navigationControl = match ($input) {
                 "up" => $this->moveUp(),
                 "down" => $this->moveDown(),
@@ -41,14 +41,14 @@ abstract class BaseState implements State
         return false;
     }
 
-    protected function selectOption()
+    protected function selectOption(): BaseState
     {
         $keys = array_keys($this->options);
         $selectedOption = $keys[$this->selectedIndex];
         return $this->createState($selectedOption);
     }
 
-    protected function createState($selectedOption)
+    protected function createState(string $selectedOption): BaseState
     {
         return $this->options[$selectedOption];
     }

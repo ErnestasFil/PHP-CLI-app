@@ -2,11 +2,10 @@
 
 class Charity extends Model
 {
-    public $id;
-    public $name;
-    public $email;
+    public int $id;
+    public string $name;
+    public string $email;
     protected string $table = 'charities';
-    protected string $primaryKey = 'id';
 
     public static function importColumns(): array
     {

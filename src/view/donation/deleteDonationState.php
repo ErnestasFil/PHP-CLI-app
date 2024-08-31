@@ -32,7 +32,7 @@ class DeleteDonationState extends BaseState
         ];
     }
 
-    protected function createState($selectedOption)
+    protected function createState(string $selectedOption): BaseState
     {
         if ($selectedOption == "Yes")
             Donation::deleteById($this->donationId);

@@ -24,7 +24,7 @@ class ExitState extends BaseState
         ];
     }
 
-    protected function createState($selectedOption)
+    protected function createState(string $selectedOption): BaseState
     {
         if ($selectedOption == "No")
             return $this->options[$selectedOption];

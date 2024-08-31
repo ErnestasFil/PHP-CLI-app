@@ -11,7 +11,7 @@ class ImportDonationState extends BaseState
         self::__init();
         TextTable::displayText($this->lines);
 
-        $selectedFile = CLI::getSelectedFile();
+        $selectedFile = ConsoleInput::getSelectedFile();
 
         if ($selectedFile) {
             $rules = [
