@@ -9,13 +9,14 @@ class Donation extends Model
     public $date_time;
     protected string $table = 'donations';
 
-//     public function __construct($donor_name = null, $amount = null, $charity_id = null)
-//     {
-//         parent::__construct();
-//         $this->donor_name = $donor_name;
-//         $this->amount = $amount;
-//         $this->charity_id = $charity_id;
-//         $this->date_time = date('Y-m-d H:i:s');
-//     }
+    public static function importColumns(): array
+    {
+        return [
+            'donor_name' => 'donor_name',
+            'amount' => 'amount',
+            'charity_id' => 'charity_id',
+            'date_time' => 'date_time',
+        ];
+    }
 // }
 }

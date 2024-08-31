@@ -23,7 +23,7 @@ class TextTable
             $strippedLine = ConsoleStyle::stripAnsiCodes($line);
 
             $paddedLine = match ($alignment) {
-                'left' => str_pad($line, self::CONSOLE_WIDTH - 4 + mb_strlen($line) - mb_strlen($strippedLine), ' ', STR_PAD_RIGHT),
+                'left' => str_pad($line, self::CONSOLE_WIDTH - 4 + mb_strlen($line) - mb_strlen($strippedLine)),
                 'right' => str_pad($line, self::CONSOLE_WIDTH - 4 + mb_strlen($line) - mb_strlen($strippedLine), ' ', STR_PAD_LEFT),
                 'center' => str_pad($line, self::CONSOLE_WIDTH - 4 + mb_strlen($line) - mb_strlen($strippedLine), ' ', STR_PAD_BOTH)
             };

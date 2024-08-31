@@ -14,9 +14,9 @@ class ViewDonationState extends BaseState
     public function __init(): void
     {
         $this->options = [
-            "Add donation" => new AddCharityState(),
-            "Edit donation" => new MenuState(),
-            "Delete donation" => new MenuState(),
+            "Add donation" => new AddDonationState(),
+            "Edit donation" => new SelectEditDonationState(),
+            "Delete donation" => new SelectDeleteDonationState(),
             "Back" => new MenuState(),
         ];
     }
@@ -31,10 +31,5 @@ class ViewDonationState extends BaseState
         }, $donations);
 
         DataTable::displayTable($headers, $rows);
-    }
-
-    protected function createState($selectedOption): BaseState
-    {
-        return $this->options[$selectedOption];
     }
 }

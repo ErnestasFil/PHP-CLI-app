@@ -5,17 +5,23 @@ class RuleFactory
     public static function make($rule)
     {
         [$ruleName, $parameters] = self::parseRule($rule);
+        if (!empty($parameters))
+            $parametersArray = explode(':', $parameters);
+
         $type = null;
-        if (!empty($parameters) && str_contains($parameters, ':')) {
-            [$type, $parameters] = explode(':', $parameters, 2) + [null, null];
+        $parameter = null;
+
+        if (!empty($parametersArray)) {
+            $type = $parametersArray[0] ?? null;
+            $parameter = $parametersArray[1] ?? null;
         }
+
         $className = ucfirst($ruleName) . 'Rule';
 
         if (!class_exists($className)) {
             throw new Exception("Validation rule $ruleName does not exist." . PHP_EOL);
         }
-
-        return new $className($type, $parameters);
+        return new $className($type, $parameter);
     }
 
     private static function parseRule($rule): array
@@ -26,3 +32,4 @@ class RuleFactory
         return [$rule, null];
     }
 }
+

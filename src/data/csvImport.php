@@ -24,7 +24,7 @@ class CSVImport
                 if ($index === false) {
                     fclose($handle);
                     return [
-                        'error' => ["CSV header '$csvHeader' not found!"]
+                        'error' => ["CSV header \"$csvHeader\" not found!"]
                     ];
                 }
                 $columnIndex[$modelField] = $index;

@@ -8,7 +8,7 @@ class Charity extends Model
     protected string $table = 'charities';
     protected string $primaryKey = 'id';
 
-    public static function importColumns()
+    public static function importColumns(): array
     {
         return [
             'name' => 'name',

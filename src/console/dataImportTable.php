@@ -18,11 +18,15 @@ class DataImportTable
     {
         ConsoleStyle::clearScreen();
         TextTable::displayText(["/cData which will be imported to $modelName table:"]);
-        $headers = array_keys($data[0]);
-        $rows = array_map(function ($item) {
-            return array_values($item);
-        }, $data);
-        DataTable::displayTable($headers, $rows);
+        if (empty($data)) {
+            TextTable::displayText(["/c" . ConsoleStyle::apply("No information was found in selected file!", ["RED"])]);
+        } else {
+            $headers = array_keys($data[0]);
+            $rows = array_map(function ($item) {
+                return array_values($item);
+            }, $data);
+            DataTable::displayTable($headers, $rows);
+        }
     }
 
     private static function importData(array $data, $modelClass): void
