@@ -4,7 +4,7 @@ class SelectEditCharityState extends BaseSelectState
 {
     public function __construct()
     {
-        $this->color = "RED";
+        $this->color = "GREEN";
         $this->tableHeader = ['ID', 'Name', 'Email'];
         $this->backState = new ViewCharityState();
         $this->actionText = "charity information you want to edit";

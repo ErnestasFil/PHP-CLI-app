@@ -1,2 +1,73 @@
 # Twoday PHP Internship Homework Task
- 
+
+## Task Description:
+
+Create a CLI application that will let log donations to specific charities
+
+### The donation should have the following fields:
+
+- id
+- donor name
+- amount
+- charity id
+- date time
+
+### Charity should have the following fields:
+
+- id
+- name
+- representative email
+
+### The application should have the following functionality:
+
+- View charities
+- Add charity
+- Edit charity
+- Delete charity
+- Add donation
+
+### Requirements:
+
+- Do not use any frameworks or packages.
+- Do validation (valid email, donation, etc.)
+- Write code using the best OOP practices.
+- Add the ability to import charities in CSV format.
+- Push your code to a Git repository (e.g., GitHub, GitLab, Bitbucket) and share the link with us.
+
+## Setup
+
+### 1. Clone repository
+
+First of all clone **_Spotify Data Transformation and Analysis_** repository, it can be done using this command using *
+*Command Prompt**:
+
+```bash
+git clone https://github.com/ErnestasFil/Twoday-PHP-Internship-Homework-Task.git
+```
+
+### 2. PHP settings and version
+
+This code was wrote using **_PHP 8.2_** version. It's important that in **_php.ini_** should be enabled few extensions!
+
+```bash
+extension=pdo_sqlite            // this CLI application use SQLite database
+extension=mbstring              // to handle multibyte encodings like UTF-8
+```
+
+### 3. Python
+
+This application version use few python scripts to let user navigate in states using arrow keys and select file.
+Another version without using python scripts can be found in branch -
+[**_PHP-Only_**](https://github.com/ErnestasFil/Twoday-PHP-Internship-Homework-Task/tree/PHP-Only)
+
+### 4. Run CLI application
+
+To use this CLI application use this command:
+
+```bash
+php main.php
+```
+
+### Windows/Linux
+
+This application was tested using 2 OS: Windows 10 and Debian linux
