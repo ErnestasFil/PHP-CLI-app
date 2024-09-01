@@ -9,7 +9,7 @@ class StateManager
         $this->state = $initialState;
     }
 
-    public function run(): void
+    public function render(): void
     {
         $this->state->display();
         $this->displaySelectableTable();
@@ -47,7 +47,7 @@ class StateManager
         }
     }
 
-    public function setState(State $state): void
+    private function setState(State $state): void
     {
         $this->state = $state;
     }

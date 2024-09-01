@@ -2,10 +2,8 @@
 
 class DeleteDonationState extends BaseState
 {
-    protected array $options;
-    protected array $lines;
-    protected array $receivedData;
-    protected int $donationId;
+    private array $receivedData;
+    private int $donationId;
 
     public function __construct(int $donationId)
     {

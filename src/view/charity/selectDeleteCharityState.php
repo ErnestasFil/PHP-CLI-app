@@ -1,43 +1,27 @@
 <?php
 
-class SelectDeleteCharityState extends BaseState
+class SelectDeleteCharityState extends BaseSelectState
 {
-    protected array $options;
-    protected array $lines;
-    protected array $tableData;
-    protected array $tableHeader;
-    protected string $color = "RED";
-
-    public function display(): void
+    public function __construct()
     {
-        ConsoleStyle::clearScreen();
-        $this->charitiesInfo();
-        self::__init();
-        TextTable::displayText($this->lines);
-    }
-
-    private function charitiesInfo(): void
-    {
-        $charities = Charity::getAll();
-
+        $this->color = "RED";
         $this->tableHeader = ['ID', 'Name', 'Email'];
-        $this->tableData = array_map(function ($charity) {
-            return [$charity->id, $charity->name, $charity->email];
-        }, $charities);
-
-        foreach ($charities as $charity) {
-            $this->options["Delete Charity ID " . $charity->id] = new DeleteCharityState($charity->id);
-        }
+        $this->backState = new ViewCharityState();
+        $this->actionText = "charity information you want to delete";
     }
 
-    public function __init(): void
+    protected function getData(): array
     {
-        $this->options["Back"] = new ViewCharityState();
-        $this->lines = [
-            "/cChoose which charity information you want to delete and press \"ENTER\".",
-            "/br",
-            "/c" . ConsoleStyle::apply("Information, which have donation data will be removed also!", ["RED"])
-        ];
+        return Charity::getAll();
     }
 
+    protected function createOptions(mixed $data): void
+    {
+        $this->options["Delete Charity ID " . $data->id] = new DeleteCharityState($data->id);
+    }
+
+    protected function mapItemToTableRow(mixed $item): array
+    {
+        return [$item->id, $item->name, $item->email];
+    }
 }

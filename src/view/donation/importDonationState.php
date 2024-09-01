@@ -2,9 +2,6 @@
 
 class ImportDonationState extends BaseState
 {
-    protected array $options;
-    protected array $lines;
-
     public function display(): void
     {
         ConsoleStyle::clearScreen();

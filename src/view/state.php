@@ -15,4 +15,6 @@ interface State
     public function getTableData(): array;
 
     public function getColor(): string;
+
+    public function __init(): void;
 }

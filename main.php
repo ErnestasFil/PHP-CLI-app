@@ -12,6 +12,8 @@ require_once './src/view/baseState.php';
 require_once './src/view/menuState.php';
 require_once './src/view/exitState.php';
 require_once './src/view/stateManager.php';
+require_once './src/view/baseFormState.php';
+require_once './src/view/baseSelectState.php';
 
 require_once './src/view/charity/viewCharityState.php';
 require_once './src/view/charity/importCharityState.php';
@@ -61,5 +63,5 @@ $dbManager->createTables();
 Model::setConnection($dbManager->getPDO());
 
 while (true) {
-    $stateManager->run();
+    $stateManager->render();
 }

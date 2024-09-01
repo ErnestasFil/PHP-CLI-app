@@ -2,8 +2,6 @@
 
 class ViewDonationState extends BaseState
 {
-    protected array $options;
-
     public function display(): void
     {
         ConsoleStyle::clearScreen();

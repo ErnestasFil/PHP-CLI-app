@@ -2,11 +2,13 @@
 
 abstract class BaseState implements State
 {
+    protected array $lines = [];
     protected array $options = [];
     protected array $tableData = [];
     protected array $tableHeader = [];
     protected int $selectedIndex = 0;
     protected string $color;
+    protected BaseState $backState;
 
     public function handleInput(): BaseState|bool
     {

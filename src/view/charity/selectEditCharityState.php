@@ -1,40 +1,28 @@
 <?php
 
-class SelectEditCharityState extends BaseState
+class SelectEditCharityState extends BaseSelectState
 {
-    protected array $options;
-    protected array $lines;
-    protected array $tableData;
-    protected array $tableHeader;
-    protected string $color = "GREEN";
-
-    public function display(): void
+    public function __construct()
     {
-        ConsoleStyle::clearScreen();
-        $this->charitiesInfo();
-        self::__init();
-        TextTable::displayText($this->lines);
-    }
-
-    private function charitiesInfo(): void
-    {
-        $charities = Charity::getAll();
-
+        $this->color = "RED";
         $this->tableHeader = ['ID', 'Name', 'Email'];
-        $this->tableData = array_map(function ($charity) {
-            return [$charity->id, $charity->name, $charity->email];
-        }, $charities);
-
-        foreach ($charities as $charity) {
-            $this->options["Edit Charity ID " . $charity->id] = new EditCharityState($charity->id);
-        }
+        $this->backState = new ViewCharityState();
+        $this->actionText = "charity information you want to edit";
     }
 
-    public function __init(): void
+    protected function getData(): array
     {
-        $this->options["Back"] = new ViewCharityState();
-        $this->lines = [
-            "/cChoose which charity information you want to edit and press \"ENTER\"."
-        ];
+        return Charity::getAll();
+    }
+
+    protected function createOptions(mixed $data): void
+    {
+        $this->options["Edit Charity ID " . $data->id] = new EditCharityState($data->id);
+    }
+
+    protected function mapItemToTableRow(mixed $item): array
+    {
+        return [$item->id, $item->name, $item->email];
     }
 }
+

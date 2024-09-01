@@ -2,10 +2,8 @@
 
 class DeleteCharityState extends BaseState
 {
-    protected array $options;
-    protected array $lines;
-    protected array $receivedData;
-    protected int $charityId;
+    private array $receivedData;
+    private int $charityId;
 
     public function __construct(int $charityId)
     {

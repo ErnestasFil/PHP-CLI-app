@@ -2,8 +2,6 @@
 
 class TextTable
 {
-
-
     public static function displayText(array $lines): void
     {
         DataTable::printLine(ConsoleStyle::CONSOLE_WIDTH);
