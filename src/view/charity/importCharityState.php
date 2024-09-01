@@ -8,16 +8,16 @@ class ImportCharityState extends BaseState
         self::__init();
         TextTable::displayText($this->lines);
 
-        $selectedFile = ConsoleInput::getSelectedFile();
+        $selectedFile = ConsoleInput::getDataInput(['filePath' => "Enter full file path: "]);
 
-        if ($selectedFile) {
+        if ($selectedFile['filePath']) {
             $rules = [
                 'name' => ['notEmpty', 'min:str:5', 'max:str:20', 'string'],
                 'email' => ['notEmpty', 'email', 'unique:Charity:email']
             ];
 
             $validator = new Validator($rules, false);
-            $data = CSVImport::import($selectedFile, Charity::class, $validator);
+            $data = CSVImport::import($selectedFile['filePath'], Charity::class, $validator);
             DataImportTable::createTable($data, 'Charity', Charity::class);
 
         } else {

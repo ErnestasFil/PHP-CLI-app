@@ -19,7 +19,7 @@ class MenuState extends BaseState
         $this->lines = [
             "/cPHP Internship Homework Task",
             "/br",
-            "To change the menu state, use the arrow keys on your keyboard.",
+            "To change the menu state, write option number, which is in brackets [].",
             "To confirm your selection click on the \"ENTER\" button."
         ];
     }

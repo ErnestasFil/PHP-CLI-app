@@ -4,8 +4,7 @@ class SelectDeleteDonationState extends BaseSelectState
 {
     public function __construct()
     {
-        $this->color = "RED";
-        $this->tableHeader = ['ID', 'Charity ID', 'Donor name', 'Amount', 'Date'];
+        $this->tableHeader = ['OPTION', 'ID', 'Charity ID', 'Donor name', 'Amount', 'Date'];
         $this->backState = new ViewDonationState();
         $this->actionText = "donation information you want to delete";
     }
@@ -20,9 +19,10 @@ class SelectDeleteDonationState extends BaseSelectState
         $this->options["Delete Donation ID " . $data->id] = new DeleteDonationState($data->id);
     }
 
-    protected function mapItemToTableRow(mixed $item): array
+    protected function mapItemToTableRow(mixed $item, int $index): array
     {
         return [
+            "[$index]",
             $item->id,
             $item->charity_id,
             $item->donor_name,

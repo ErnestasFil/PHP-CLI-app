@@ -8,8 +8,6 @@ class ConsoleStyle
     const GREEN = "\033[32m";
     const START_CURSOR = "\033[H";
     const CLEAR_SCREEN = "\033[J";
-    const INVISIBLE_CURSOR = "\033[?25l";
-    const VISIBLE_CURSOR = "\033[?25h";
     const CONSOLE_WIDTH = 90;
 
     public static function apply(string $text, array $styles = []): string
@@ -20,7 +18,7 @@ class ConsoleStyle
 
     public static function clearScreen(): void
     {
-        echo self::INVISIBLE_CURSOR . self::START_CURSOR . self::CLEAR_SCREEN;
+        echo self::START_CURSOR . self::CLEAR_SCREEN;
     }
 
     public static function stripAnsiCodes(string $text): string

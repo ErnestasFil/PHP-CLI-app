@@ -6,48 +6,22 @@ abstract class BaseState implements State
     protected array $options = [];
     protected array $tableData = [];
     protected array $tableHeader = [];
-    protected int $selectedIndex = 0;
-    protected string $color;
     protected BaseState $backState;
 
-    public function handleInput(): BaseState|bool
+    public function handleInput(): BaseState|null
     {
-        $navigationControl = false;
-        while (!$navigationControl) {
-            $input = ConsoleInput::getInput();
-            $navigationControl = match ($input) {
-                "up" => $this->moveUp(),
-                "down" => $this->moveDown(),
-                "enter" => $this->selectOption(),
-                default => null,
-            };
-        }
-        return $navigationControl;
+        $input = ConsoleInput::getDataInput(['option' => ConsoleStyle::apply('Enter option number: ', ["GREEN", "BLINK"])]);
+        return $this->selectOption($input['option']);
     }
 
-    protected function moveUp(): bool
-    {
-        if ($this->selectedIndex > 0) {
-            $this->selectedIndex--;
-            return true;
-        }
-        return false;
-    }
-
-    protected function moveDown(): bool
-    {
-        if ($this->selectedIndex < count($this->options) - 1) {
-            $this->selectedIndex++;
-            return true;
-        }
-        return false;
-    }
-
-    protected function selectOption(): BaseState
+    protected function selectOption(mixed $input): BaseState|null
     {
         $keys = array_keys($this->options);
-        $selectedOption = $keys[$this->selectedIndex];
-        return $this->createState($selectedOption);
+        if (filter_var($input, FILTER_VALIDATE_INT) && array_key_exists($input - 1, $keys)) {
+            $selectedOption = $keys[$input - 1];
+            return $this->createState($selectedOption);
+        }
+        return null;
     }
 
     protected function createState(string $selectedOption): BaseState
@@ -68,15 +42,5 @@ abstract class BaseState implements State
     public function getTableHeader(): array
     {
         return $this->tableHeader;
-    }
-
-    public function getSelectedIndex(): int
-    {
-        return $this->selectedIndex;
-    }
-
-    public function getColor(): string
-    {
-        return $this->color;
     }
 }

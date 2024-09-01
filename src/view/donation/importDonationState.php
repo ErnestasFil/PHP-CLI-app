@@ -8,9 +8,9 @@ class ImportDonationState extends BaseState
         self::__init();
         TextTable::displayText($this->lines);
 
-        $selectedFile = ConsoleInput::getSelectedFile();
+        $selectedFile = ConsoleInput::getDataInput(['filePath' => "Enter full file path: "]);
 
-        if ($selectedFile) {
+        if ($selectedFile['filePath']) {
             $rules = [
                 'donor_name' => ['notEmpty', 'min:str:5', 'max:str:30', 'string'],
                 'amount' => ['notEmpty', 'min:num:5.00', 'num:double:2'],
@@ -19,7 +19,7 @@ class ImportDonationState extends BaseState
             ];
 
             $validator = new Validator($rules, false);
-            $data = CSVImport::import($selectedFile, Donation::class, $validator);
+            $data = CSVImport::import($selectedFile['filePath'], Donation::class, $validator);
             DataImportTable::createTable($data, 'Donation', Donation::class);
 
         } else {

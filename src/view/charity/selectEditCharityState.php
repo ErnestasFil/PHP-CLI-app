@@ -4,8 +4,7 @@ class SelectEditCharityState extends BaseSelectState
 {
     public function __construct()
     {
-        $this->color = "GREEN";
-        $this->tableHeader = ['ID', 'Name', 'Email'];
+        $this->tableHeader = ['OPTION', 'ID', 'Name', 'Email'];
         $this->backState = new ViewCharityState();
         $this->actionText = "charity information you want to edit";
     }
@@ -20,9 +19,9 @@ class SelectEditCharityState extends BaseSelectState
         $this->options["Edit Charity ID " . $data->id] = new EditCharityState($data->id);
     }
 
-    protected function mapItemToTableRow(mixed $item): array
+    protected function mapItemToTableRow(mixed $item, int $index): array
     {
-        return [$item->id, $item->name, $item->email];
+        return ["[$index]", $item->id, $item->name, $item->email];
     }
 }
 

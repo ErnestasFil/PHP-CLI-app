@@ -8,13 +8,9 @@ interface State
 
     public function getOptions(): array;
 
-    public function getSelectedIndex(): int;
-
     public function getTableHeader(): array;
 
     public function getTableData(): array;
-
-    public function getColor(): string;
 
     public function __init(): void;
 }

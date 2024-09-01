@@ -25,26 +25,23 @@ class StateManager
         $header = $this->state->getTableHeader();
         $rows = $this->state->getTableData();
         if (!empty($rows)) {
-            DataTable::displayTable($header, $rows, $this->state->getSelectedIndex(), $this->state->getColor());
+            DataTable::displayTable($header, $rows);
         }
     }
 
     private function displayOptions(): void
     {
-        echo "Choose an option:\n";
+        echo "Choose an option:" . PHP_EOL;
         $options = $this->state->getOptions();
         $keys = array_keys($options);
         $dataRowCount = count($this->state->getTableData());
         foreach ($keys as $index => $option) {
             if ($dataRowCount > 0 && $dataRowCount > $index)
                 continue;
-            $number = $index - $dataRowCount + 1;
-            if ($index === $this->state->getSelectedIndex()) {
-                echo ConsoleStyle::apply("> [$number] $option", ['GREEN', 'BLINK']) . PHP_EOL;
-            } else {
-                echo "  [$number] $option\n";
-            }
+            $number = $index + 1;
+            echo "  [$number] $option" . PHP_EOL;
         }
+        echo PHP_EOL;
     }
 
     private function setState(State $state): void

@@ -38,10 +38,11 @@ Create a CLI application that will let log donations to specific charities
 
 ### 1. Clone repository
 
-First of all clone **_Spotify Data Transformation and Analysis_** repository, it can be done using this command using **Command Prompt**:
+First of all clone **_Twoday PHP Internship Homework Task_** repository, it can be done using this command using *
+*Command Prompt**:
 
 ```bash
-git clone https://github.com/ErnestasFil/Twoday-PHP-Internship-Homework-Task.git
+git clone -b PHP-Only https://github.com/ErnestasFil/Twoday-PHP-Internship-Homework-Task.git
 ```
 
 ### 2. PHP settings and version
@@ -53,13 +54,7 @@ extension=pdo_sqlite            // this CLI application use SQLite database
 extension=mbstring              // to handle multibyte encodings like UTF-8
 ```
 
-### 3. Python
-
-This application version use few python scripts to let user navigate in states using arrow keys and select file.
-Another version without using python scripts can be found in branch -
-[**_PHP-Only_**](https://github.com/ErnestasFil/Twoday-PHP-Internship-Homework-Task/tree/PHP-Only)
-
-### 4. Run CLI application
+### 3. Run CLI application
 
 To use this CLI application use this command:
 

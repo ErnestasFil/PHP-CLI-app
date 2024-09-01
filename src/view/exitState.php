@@ -27,7 +27,6 @@ class ExitState extends BaseState
             return $this->options[$selectedOption];
 
         ConsoleStyle::clearScreen();
-        echo ConsoleStyle::VISIBLE_CURSOR;
         exit('');
     }
 }

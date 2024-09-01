@@ -15,9 +15,12 @@ abstract class BaseSelectState extends BaseState
     protected function getInfo(): void
     {
         $data = $this->getData();
-        $this->tableData = array_map(function ($item) {
-            return $this->mapItemToTableRow($item);
-        }, $data);
+        $this->tableData = array_map(
+            function ($item, $index) {
+                return $this->mapItemToTableRow($item, $index + 1);
+            },
+            $data, array_keys($data)
+        );
 
         foreach ($data as $item) {
             $this->createOptions($item);
@@ -26,7 +29,7 @@ abstract class BaseSelectState extends BaseState
 
     abstract protected function getData(): array;
 
-    protected function mapItemToTableRow(mixed $item): array
+    protected function mapItemToTableRow(mixed $item, int $index): array
     {
         return (array)$item;
     }

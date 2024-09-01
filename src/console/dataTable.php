@@ -2,7 +2,7 @@
 
 class DataTable
 {
-    public static function displayTable(array $headers, array $rows, int $selectedIndex = -1, string $color = ""): void
+    public static function displayTable(array $headers, array $rows): void
     {
         if (!empty($rows)) {
             $columnWidths = self::calculateColumnWidths($headers, $rows);
@@ -12,18 +12,9 @@ class DataTable
             echo self::printRow($headers, $columnWidths);
             self::printLine($lineWidth);
 
-            foreach ($rows as $index => $row) {
-                if ($selectedIndex >= 0) {
-                    if ($index === $selectedIndex) {
-                        echo ConsoleStyle::apply(self::printRow($row, $columnWidths), [$color, 'BLINK']);
-                    } else {
-                        echo self::printRow($row, $columnWidths);
-                    }
-                } else {
-                    echo self::printRow($row, $columnWidths);
-                }
+            foreach ($rows as $row) {
+                echo self::printRow($row, $columnWidths);
             }
-
             self::printLine($lineWidth);
             echo PHP_EOL;
         } else {
