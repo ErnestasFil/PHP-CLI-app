@@ -20,9 +20,9 @@ class ConsoleInput
             $str = fread(STDIN, 3);
             system('stty -raw echo');
             return match ($str) {
-                '\r' => 'enter',
-                '\e[A' => 'up',
-                '\e[B' => 'down',
+                "\r" => 'enter',
+                "\e[A" => 'up',
+                "\e[B" => 'down',
                 default => '',
             };
         }
