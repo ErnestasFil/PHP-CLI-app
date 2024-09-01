@@ -38,8 +38,7 @@ Create a CLI application that will let log donations to specific charities
 
 ### 1. Clone repository
 
-First of all clone **_Spotify Data Transformation and Analysis_** repository, it can be done using this command using *
-*Command Prompt**:
+First of all clone **_Spotify Data Transformation and Analysis_** repository, it can be done using this command using **Command Prompt**:
 
 ```bash
 git clone https://github.com/ErnestasFil/Twoday-PHP-Internship-Homework-Task.git
