@@ -1,4 +1,4 @@
-# Twoday PHP Internship Homework Task
+# PHP CLI app
 
 ## Task Description:
 
@@ -38,11 +38,11 @@ Create a CLI application that will let log donations to specific charities
 
 ### 1. Clone repository
 
-First of all clone **_Twoday PHP Internship Homework Task_** repository, it can be done using this command using *
+First of all clone **_PHP-CLI-app_** repository, it can be done using this command using *
 *Command Prompt**:
 
 ```bash
-git clone https://github.com/ErnestasFil/Twoday-PHP-Internship-Homework-Task.git
+git clone https://github.com/ErnestasFil/PHP-CLI-app.git
 ```
 
 ### 2. PHP settings and version
@@ -58,7 +58,7 @@ extension=mbstring              // to handle multibyte encodings like UTF-8
 
 This application version use few python scripts to let user navigate in states using arrow keys and select file.
 Another version without using python scripts can be found in branch -
-[**_PHP-Only_**](https://github.com/ErnestasFil/Twoday-PHP-Internship-Homework-Task/tree/PHP-Only)
+[**_PHP-Only_**](https://github.com/ErnestasFil/PHP-CLI-app/tree/PHP-Only)
 
 ### 4. Run CLI application
 
